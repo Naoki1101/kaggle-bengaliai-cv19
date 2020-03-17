@@ -1,0 +1,120 @@
+data:
+    input_root: ../data/input/
+    train_file: train.csv
+    img_file:
+        - train_image_data_0.feather
+        - train_image_data_1.feather
+        - train_image_data_2.feather
+        - train_image_data_3.feather
+    fold_num: 0
+    drop_fname:
+
+
+train_params:
+    img_size: 
+        - 128
+        - 128
+    epochs: 120
+    batch_size: 64
+    early_stopping: 999
+
+    model_params:
+        model_name: resnetd34
+        n_channels: 3
+        n_classes:
+            - 174
+            - 11
+            - 7
+        pretrained: False
+
+    augmentation:
+        albumentations:
+            # hflip:
+            #     p: 0.
+            # vflip:
+            #     p: 0.
+            # blur:
+            #     p: 0.5
+            #     blur_limit: 3
+            # mblur:
+            #     p: 0.5
+            # rbright:
+            #     p: 0.5
+            rotate:
+                p: 0.5
+                limit: 10
+            # rotate90:
+            #     p: 0.
+            # ssrotate:
+            #     p: 0.5
+            #     shift_limit: 0.
+            #     scale_limit: 0.1
+            #     rotate_limit: 10
+            cutout:
+                p: 0.5
+                num_holes: 30
+                max_h_size: 10
+                max_w_size: 10
+            # cdropout:
+            #     p: 0.5
+            #     max_holes: 50
+            #     max_height: 20
+            #     max_width: 20
+            #     min_holes: 10
+            #     min_height: 5
+            #     min_width: 5
+            # rrcrop:
+            #     p: 0.
+            #     height: 128
+            #     width: 128
+            #     scale:
+            #         - 0.5
+            #         - 1.0
+            #     ratio:
+            #         - 0.75
+            #         - 1.33
+            # elastic:
+            #     p: 0.5
+            #     alpha: 1
+            #     sigma: 15
+            #     alpha_affine: 15
+            #     interpolation: 1
+            #     border_mode: 4
+            # rmorph:
+            #     p: 0.5
+            # augmix:
+            #     p: 0.
+            # gridmask:
+            #     p: 0.5
+            #     num_grid:
+            #         - 3
+            #         - 7
+            #     rotate_limit: 10
+            #     mode: 0
+        mix_params:
+            mixup: 0.5
+            cutmix: 0.5
+
+
+    loss: SmoothCrossEntropyLoss
+    optimizer:
+        type: SGD
+        lr: 0.1
+
+    scheduler:
+        type: cosine
+        eta_min: 0.00000001
+        t_max: 120
+        # type: step
+        # step_size: 10
+        # gamma: 0.5
+        # type: reduce
+        # factor: 0.7
+        # patience: 5
+        # min_lr: 0.0000001
+
+    tta: 
+
+
+settings:
+  sampling_num: -1

@@ -1,0 +1,12 @@
+__pycache__/
+.DS_Store
+
+notebooks/*
+
+logs/
+folds/
+data/
+pickle/
+
+notify.yml
+tox.ini

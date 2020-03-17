@@ -1,0 +1,6 @@
+compe:
+    compe_name: bengaliai-cv19
+    target_name: target
+    id_name: image_id
+    metrics: recall
+    seed: 2020
